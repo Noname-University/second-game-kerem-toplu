@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Helpers;
 using UnityEngine;
 
-public class Player : MonoSingleton<Player>
+public class Player : MonoSingleton<Player>, IKillable
 {
     [SerializeField]
     private float speed;
@@ -14,6 +14,25 @@ public class Player : MonoSingleton<Player>
     private MissileController missileController;
     private float boundX;
     private float boundY;
+
+    public float FireTime //proporty kullanımı
+    {
+        get
+        {
+            return fireTime;
+        }
+        set
+        {
+            if (value > 0)
+            {
+
+                fireTime = value;
+            }
+        }
+
+
+
+    }
     private void Awake()
     {
         boundX = Camera.main.orthographicSize / 2 - 7;
@@ -67,5 +86,15 @@ public class Player : MonoSingleton<Player>
         missileController.Fire();
         yield return new WaitForSeconds(fireTime);
         StartCoroutine(Fire());
+    }
+
+    public void Kill()
+    {
+
+    }
+
+    public void TakeHit(float hit)
+    {
+
     }
 }

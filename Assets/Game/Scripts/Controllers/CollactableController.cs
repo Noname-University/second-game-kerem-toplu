@@ -8,7 +8,7 @@ public class CollactableController : MonoSingleton<CollactableController>
     private CollectableType[] collectablesTypes;
     private ICollectible[] collectables;
 
-    private int collectableCount;
+    private int collectableCount = 0;
 
     private void Awake()
     {

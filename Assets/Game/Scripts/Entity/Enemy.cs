@@ -2,21 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IKillable
 {
     [SerializeField]
-    private bool active = false;
+    private float health;
 
-    private bool jobdone = false;
+    [SerializeField]
+    private float speed;
+
+    private void Start()
+    {
+        LeanTween.moveX(gameObject, transform.position.x + 10, .25f).setOnComplete(
+        () =>
+        LeanTween.moveX(gameObject, transform.position.x - 20, .5f).setEaseInOutCubic().setLoopPingPong()
+        );
+    }
+
+
     private void Update()
     {
+        transform.position -= Vector3.forward * speed * Time.deltaTime;
 
-        if (active && !jobdone)
+    }
+
+
+    public void Kill()
+    {
+
+
+
+        CollactableController.Instance.SpawnCollectable(transform.position);
+        gameObject.SetActive(false);
+
+
+    }
+
+    public void TakeHit(float hit)
+    {
+        health -= hit;
+        if (health < 0)
         {
-
-            jobdone = true;
-            CollactableController.Instance.SpawnCollectable(transform.position);
-
+            Kill();
         }
     }
+
 }

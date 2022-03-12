@@ -38,8 +38,9 @@ public class BufFireSpeed : MonoBehaviour, ICollectible
         transform.position = position;
         spawnPosition = position;
         gameObject.SetActive(true);
-        LeanTween.moveX(gameObject, 10, .25f).setOnComplete(() =>
-        LeanTween.moveX(gameObject, -20, .5f).setEaseInOutCubic().setLoopPingPong()
+        LeanTween.moveX(gameObject, 10, .4f).setOnComplete(
+            () =>
+        LeanTween.moveX(gameObject, -20, .8f).setLoopPingPong().setEaseInOutCubic()
         );
     }
 }

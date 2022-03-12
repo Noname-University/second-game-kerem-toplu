@@ -22,6 +22,7 @@ public class Missile : MonoBehaviour
         if (killable != null)
         {
             killable.TakeHit(1);
+            gameObject.SetActive(false);
         }
     }
 }

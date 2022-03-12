@@ -28,10 +28,14 @@ public class Enemy : MonoBehaviour, IKillable
 
     public void Kill()
     {
+        var random = Random.Range(0, 10);
 
+        if (random == 1)
+        {
 
+            CollactableController.Instance.SpawnCollectable(transform.position);
 
-        CollactableController.Instance.SpawnCollectable(transform.position);
+        }
         gameObject.SetActive(false);
 
 
